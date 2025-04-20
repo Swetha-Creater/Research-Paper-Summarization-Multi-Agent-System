@@ -1,0 +1,13 @@
+requests
+beautifulsoup4
+LXML
+PyMuPDF
+streamlit
+pytesseract
+Pillow
+PyMuPDF
+google-generativeai
+gtts
+sentence-transformers
+numpy
+tqdm
