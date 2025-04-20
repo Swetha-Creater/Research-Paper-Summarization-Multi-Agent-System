@@ -1,26 +1,24 @@
-name: Push to Hugging Face
 
+name: sync to Hugging Face hub
 on:
   push:
     branches: [main]
 
-jobs:
-  sync-to-hf:
-    runs-on: ubuntu-latest
+  # to run this workflow manually from the Actions tab
+  workflow_dispatch:
 
+jobs:
+  sync-to-hub:
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
         with:
           fetch-depth: 0
           lfs: true
-
-      - name: Push to Hugging Face
+      - name: Push to hub
         env:
           HF_TOKEN: ${{ secrets.HF_TOKEN }}
-        run: |
-          git remote remove hf 2>/dev/null || true
-          git remote add hf https://swetha55:${HF_TOKEN}@huggingface.co/spaces/swetha55/Research-Paper-Summarization
-          git push hf main --force
+        run: git push --force https://Swetha55:$HF_TOKEN@huggingface.co/spaces/swetha55/Research-Paper-Summarization main
 
 
 
