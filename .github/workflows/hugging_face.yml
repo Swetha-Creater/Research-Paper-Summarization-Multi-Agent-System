@@ -1,20 +1,29 @@
-name: Sync to Hugging Face hub
+name: Sync to Hugging Face Hub
+
 on:
   push:
-    branches: [main]
-
-  # to run this workflow manually from the Actions tab
-  workflow_dispatch:
+    branches: [main]   # Trigger only when main is updated
+  workflow_dispatch:   # Manual trigger option
 
 jobs:
-  sync-to-hub:
+  sync-to-hf:
     runs-on: ubuntu-latest
+
     steps:
-      - uses: actions/checkout@v3
+      - name: Checkout GitHub repo
+        uses: actions/checkout@v3
         with:
-          fetch-depth: 0
-          lfs: true
-      - name: Push to hub
+          lfs: true  # Enables support for large files (e.g., videos)
+
+      - name: Configure Git
+        run: |
+          git config --global user.email "your-email@example.com"
+          git config --global user.name "Your Name"
+
+      - name: Push to Hugging Face
         env:
           HF_TOKEN: ${{ secrets.HF_TOKEN }}
-        run: git push --force https://swetha55:$HF_TOKEN@huggingface.co/spaces/swetha55/Research-Paper-Summarization main
+        run: |
+          git remote add hf https://user:$HF_TOKEN@huggingface.co/spaces/swetha55/Research-Paper-Summarization || true
+          git push hf main --force
+
