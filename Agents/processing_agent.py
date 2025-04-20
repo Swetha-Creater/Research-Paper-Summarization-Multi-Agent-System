@@ -81,7 +81,7 @@ def extract_pdf_with_ocr_and_tables(file_path):
                             "content": "\n".join(rows)
                         })
 
-    print(f"✅ Extracted: {len(text_blocks)} text chunks, {len(table_blocks)} tables, {len(ocr_blocks)} OCR chunks")
+    print(f"Extracted: {len(text_blocks)} text chunks, {len(table_blocks)} tables, {len(ocr_blocks)} OCR chunks")
     return text_blocks + table_blocks + ocr_blocks
 
 
