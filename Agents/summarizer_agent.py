@@ -1,5 +1,6 @@
 import google.generativeai as genai
 import os
+from dotenv import load_dotenv
 
 def summarizer_agent(input: dict) -> dict:
     chunks = input.get("chunks", [])
@@ -32,7 +33,9 @@ TEXT:
 """
 
     try:
-        genai.configure(api_key="AIzaSyA0djFQGSdwoS9mSSnHh4YItHvniEATq3o")
+        load_dotenv()
+        GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
+        genai.configure(api_key=GEMINI_API_KEY)
         model = genai.GenerativeModel(model_name)
         response = model.generate_content(prompt)
         summary = response.text.strip()
@@ -82,7 +85,8 @@ Summaries:
 """
 
     try:
-        genai.configure(api_key="AIzaSyA0djFQGSdwoS9mSSnHh4YItHvniEATq3o")
+        GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
+        genai.configure(api_key=GEMINI_API_KEY)
         model = genai.GenerativeModel(model_name)
         response = model.generate_content(prompt)
         synthesis = response.text.strip()
