@@ -34,7 +34,7 @@ def run_pipeline(input_data: dict) -> dict:
 
         input_data["summary"] = summarizer_agent({"chunks": text_chunks})
 
-        # 🎷 Generate audio summary (English)
+        #  Generate audio summary (English)
         summary_text = input_data["summary"].get("summary_text", "")
         if summary_text.strip():
             metadata = input_data["fetched"].get("metadata", {
@@ -61,7 +61,7 @@ def run_pipeline(input_data: dict) -> dict:
         ]
         input_data["summaries"] = paper_summaries
 
-        # 📄 Individual summary audio per paper
+        #  Individual summary audio per paper
         input_data["individual_audios"] = []
         for i, (paper, summary) in enumerate(zip(papers, paper_summaries)):
             audio_result = summary_audio_agent({
@@ -77,7 +77,7 @@ def run_pipeline(input_data: dict) -> dict:
                 "error": audio_result.get("error", "")
             })
 
-        # 🔄 Cross-paper synthesis + audio
+        #  Cross-paper synthesis + audio
         if len(paper_summaries) >= 2:
             input_data["synthesis"] = synthesizer_agent({
                 "topic": input_data.get("topic", "General"),
@@ -108,7 +108,7 @@ def run_pipeline(input_data: dict) -> dict:
 
     # Final flag for UI
     input_data["status"] = "complete"
-    print("✅ Final output keys:", list(input_data.keys()))
+    print(" Final output keys:", list(input_data.keys()))
     return input_data
 
 
