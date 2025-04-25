@@ -32,7 +32,7 @@ TEXT:
 """
 
     try:
-        genai.configure(api_key="AIzaSyA0djFQGSdwoS9mSSnHh4YItHvniEATq3o")  # replace or use env
+        genai.configure(api_key="AIzaSyA0djFQGSdwoS9mSSnHh4YItHvniEATq3o")
         model = genai.GenerativeModel(model_name)
         response = model.generate_content(prompt)
         summary = response.text.strip()
@@ -82,7 +82,7 @@ Summaries:
 """
 
     try:
-        genai.configure(api_key="AIzaSyA0djFQGSdwoS9mSSnHh4YItHvniEATq3o")  # Replace as needed
+        genai.configure(api_key="AIzaSyA0djFQGSdwoS9mSSnHh4YItHvniEATq3o")
         model = genai.GenerativeModel(model_name)
         response = model.generate_content(prompt)
         synthesis = response.text.strip()
